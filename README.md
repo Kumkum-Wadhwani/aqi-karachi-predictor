@@ -43,9 +43,9 @@ This project implements an end-to-end AQI prediction system that:
 ## 🏗️ System Architecture
 
 Raw Data → Feature Engineering → ML Training → Web Dashboard
-↓ ↓ ↓ ↓
+
 AQICN API Feature Store Model Registry Streamlit
-↓ ↓ ↓ ↓
+
 GitHub Actions → Automated Pipeline → Live Predictions
 
 
