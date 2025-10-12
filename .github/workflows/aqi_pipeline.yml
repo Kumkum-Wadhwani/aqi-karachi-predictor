@@ -7,12 +7,18 @@ on:
     - cron: '0 * * * *'  # Run every hour
   workflow_dispatch:     # Manual trigger
 
+# Add permissions at the workflow level
+permissions:
+  contents: write
+
 jobs:
   feature-pipeline:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -35,7 +41,7 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add feature_store/
-        git commit -m "Update feature store data [Automated]" || exit 0
+        git diff --staged --quiet || git commit -m "Update feature store data [Automated]"
         git push
 
   training-pipeline:
