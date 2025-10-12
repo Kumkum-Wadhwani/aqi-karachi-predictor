@@ -64,4 +64,5 @@ jobs:
     
     - name: Run training pipeline
       run: |
-        python src/model_training.py
+        cd src
+        python model_training.py
