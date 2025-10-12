@@ -2,6 +2,17 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 import logging
+import os
+import sys
+
+# Add the current directory to Python path
+sys.path.append(os.path.dirname(__file__))
+
+# Try both import styles
+try:
+    from feature_store import feature_store
+except ImportError:
+    from .feature_store import feature_store
 
 # Define constants directly instead of importing
 CITY = "karachi"
@@ -121,4 +132,5 @@ if __name__ == "__main__":
         print(f"Target: {TARGET_COLUMN}")
         
         # Save to feature store
+
         engineer.save_features_to_store(features_with_target)
